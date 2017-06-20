@@ -1,0 +1,39 @@
+var validate_register_form = function () {
+        $("#register-form").validate({
+            // Specify validation rules
+            rules: {
+                // The key name on the left side is the name attribute
+                // of an input field. Validation rules are defined
+                // on the right side
+                "first-name": "required",
+                "last-name": "required",
+                "country": "required",
+                "username": "required",
+                "email-address": "required",
+                "password": "required",
+                "confirm-password": {
+                    required: true,
+                    equalTo: "#password"
+                }
+            },
+            // Specify validation error messages
+            messages: {
+                "first-name": "Please enter your first name",
+                "last-name": "Please enter your last name",
+                "country": "Please enter your country",
+                "username": "Please enter a username",
+                "email-address": "Please enter your email address",
+                "password": "Please enter a password",
+                "confirm-password": {
+                    required: "Please confirm your password",
+                    equalTo: "Passwords do not match"
+                }
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function(form) {
+                // todo add ajax for backend
+                // form.submit();
+            }
+        });
+    };
