@@ -17,5 +17,7 @@ Route::get('congratulations','MainController@congratulations');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('congratulations', 'MainController@register');
+Route::post('index', 'MainController@register');
+Route::get('dashboard', 'MainController@dashboard');
+
 

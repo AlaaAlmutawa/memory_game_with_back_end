@@ -66,7 +66,7 @@
                         <div class="col-md-4 col-md-offset-2">
                             <!--button-->
                             <a class="start" id="start-btn">START</a>
-                            <p class="timer hidden" id="timer" ></p>
+                            <p class="timer hidden" id="timer"></p>
                         </div>
                     </div>
                 </div>
@@ -74,8 +74,12 @@
                     <div class="row">
                         <div class="popup hidden">
                             <!--we should create a hidden form here that would show after the game is over-->
-                            <form method="post" action="/congratulations.php" id="register-form">
+                            {!! Form::open(['url'=> 'index', 'method' => 'post']) !!}
                                 <h1>Your Time: </h1>
+                                <div class="form-group">
+                                    <input type="hidden" name="time_record" value="00:00:00">
+                                    <input type="hidden" name="difficulty" value="easy">
+                                </div>
                                 <div class="form-group">
                                     <label for="first_name">First Name*: </label>
                                     <input type="text" class="form-control" id="first_name" name="first_name">
@@ -90,10 +94,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone_number">Phone Number: </label>
-                                    <input type="text" class="form-control" id="phone_number">
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number">
                                 </div>
                                 <button type="submit" id="submit_score">Submit Score</button>
-                            </form>
+                            {!! Form::close() !!}
                         </div>
                         <div class="col-md-3 without-padding"> <!--topten-->
                             <div class="top-10">

@@ -41,6 +41,9 @@ function afterGame(){
     $('.section.game').addClass("hidden");
     $('.popup h1').append(" "+time);
     $('.popup').removeClass("hidden");
+    $('#time_record').val(time);
+    var $value = $('#difficulty').val();
+    $('input [type=hidden] [name=difficulty]').val($value);
 }
 function removeLevelsDiv(){
     $('.difficulties').addClass("hidden");
@@ -126,15 +129,27 @@ $('#start-btn').on('click', function(){
 });
 $('#level-btn-easy').on('click',function(){
     $(".difficulties a").removeClass("clicked");
+    $('#difficulty').removeAttr('id');
     $('#level-btn-easy').addClass("clicked");
+    $('#level-btn-easy').parent().attr('id','difficulty');
+    $("input[type='hidden'][name='difficulty']").val("easy");
 });
 $('#level-btn-hard').on('click',function(){
     $(".difficulties a").removeClass("clicked");
+    $('#difficulty').removeAttr('id');
     $('#level-btn-hard').addClass("clicked");
+    $('#level-btn-hard').parent().attr('id','difficulty');
+    $("input[type='hidden'][name='difficulty']").val("hard");
+
+
+
 });
 $('#level-btn-medium').on('click',function(){
     $(".difficulties a").removeClass("clicked");
+    $('#difficulty').removeAttr('id');
     $('#level-btn-medium').addClass("clicked");
+    $('#level-btn-medium').parent().attr('id','difficulty');
+    $("input[type='hidden'][name='difficulty']").attr('value', 'medium');
 });
 $("#register-form").validate({
         // Specify validation rules

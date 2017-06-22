@@ -53,7 +53,7 @@
                     <div class="game">
                         <div class="row">
                             <div class="col-md-8 text-align-right">
-                                <a href="index.php" class="play-again">PLAY AGAIN</a>
+                                <a href="/" class="play-again">PLAY AGAIN</a>
                             </div>
                             <div class="col-md-4">
                                 <div class="text without-padding">
