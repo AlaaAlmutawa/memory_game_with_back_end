@@ -13,8 +13,18 @@ class AdminController extends Controller
         return view('dashboard');
     }
     public function editEasy(){
-        $gameOption = DB::table('game_options')->where('difficulty','easy')->first();
-        $object = GameOption::create($gameOption);
-        return Response::json($object);
+        $gameOption = GameOption::where('difficulty','easy')->first();
+        return $gameOption;
+    }
+    public function editMedium(){
+        $gameOption = GameOption::where('difficulty','medium')->first();
+        return $gameOption;
+    }
+    public function editHard(){
+        $gameOption = GameOption::where('difficulty','hard')->first();
+        return $gameOption;
+    }
+    public function saveGameEdits(){
+
     }
 }

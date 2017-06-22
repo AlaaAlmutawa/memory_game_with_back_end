@@ -20,6 +20,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('index', 'MainController@register');
 Route::get('dashboard', 'AdminController@dashboard');
 Route::get('edit-easy', 'AdminController@editEasy');
+Route::get('edit-medium', 'AdminController@editMedium');
+Route::get('edit-hard', 'AdminController@editHard');
+Route::post('edit-options', 'AdminController@saveGameEdits');
+
 
 
 

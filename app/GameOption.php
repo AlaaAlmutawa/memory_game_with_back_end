@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameOption extends Model
 {
+    protected $table = 'game_options';
     protected $fillable = [
         'difficulty', 'cols', 'rows'
     ];

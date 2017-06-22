@@ -43,18 +43,19 @@
                                                 </div>
                                                 <div class="popup hidden">
                                                     {!! Form::open(['url'=> 'dashboard', 'method' => 'post']) !!}
-                                                        <h3 id="edit-level-option">
-                                                            Edit Level Option:
-                                                        </h3>
+                                                    <h3>
+                                                        Edit Level Option: <span id="edit-level-option"></span>
+                                                    </h3>
                                                     <input type="hidden" name="difficulty" value="">
                                                     <div class="form-group">
-                                                            <label for="cols">Number of Columns*:</label>
-                                                            <input type="number" class="form-control" id="cols" name="cols">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="rows">Number of Rows*:</label>
-                                                            <input type="number" class="form-control" id="rows" name="rows">
-                                                        </div>
+                                                        <label for="cols">Number of Columns*:</label>
+                                                        <input type="number" class="form-control" id="cols" name="cols">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="rows">Number of Rows*:</label>
+                                                        <input type="number" class="form-control" id="rows" name="rows">
+                                                    </div>
+                                                    <button type="submit" id="submit_changes">Submit Changes</button>
                                                     {!! Form::close() !!}
                                                 </div>
                                             </div>

@@ -178,9 +178,51 @@ $("#register-form").validate({
 $('#easy').on('click',function(){
     $.ajax({
         type: "GET",
-        url: 'edit-easy',
+        url: '/edit-easy',
+        success: function(data) {
+            $('.popup').removeClass("hidden");
+            $('.popup h3').attr('id',data['id']);
+            $('#edit-level-option').text("Easy");
+            $('#cols').val(data['cols']);
+            $('#rows').val(data['rows']);
+        }
+    })
+});
+$('#medium').on('click',function(){
+    $.ajax({
+        type: "GET",
+        url: '/edit-medium',
+        success: function(data) {
+            $('.popup').removeClass("hidden");
+            $('.popup h3').attr('id',data['id']);
+            $('#edit-level-option').text("Medium");
+            $('#cols').val(data['cols']);
+            $('#rows').val(data['rows']);
+        }
+    })
+});
+$('#hard').on('click',function(){
+    $.ajax({
+        type: "GET",
+        url: '/edit-hard',
+        success: function(data) {
+            $('.popup').removeClass("hidden");
+            $('.popup h3').attr('id',data['id']);
+            $('#edit-level-option').text(data["Hard"]);
+            $('#cols').val(data['cols']);
+            $('#rows').val(data['rows']);
+        }
+    })
+});
+$('#submit_changes').on('click', function(){
+    var $id = $('.popup h3').id;
+
+    $.ajax({
+        type: "POST",
+        url: '/edit-options',
+        data: { "id": };
         success: function() {
-            console.log(data);
+            console.log("done");
         }
     })
 });
