@@ -18,6 +18,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('index', 'MainController@register');
-Route::get('dashboard', 'MainController@dashboard');
+Route::get('dashboard', 'AdminController@dashboard');
+Route::get('edit-easy', 'AdminController@editEasy');
+
 
 

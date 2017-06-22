@@ -128,11 +128,11 @@ $('#start-btn').on('click', function(){
     $('.disk').click(showColorFor5Seconds);
 });
 $('#level-btn-easy').on('click',function(){
-    $(".difficulties a").removeClass("clicked");
-    $('#difficulty').removeAttr('id');
-    $('#level-btn-easy').addClass("clicked");
-    $('#level-btn-easy').parent().attr('id','difficulty');
-    $("input[type='hidden'][name='difficulty']").val("easy");
+    $(".difficulties a").removeClass("clicked");//happens in both
+    $('#difficulty').removeAttr('id');//doesnt matter?
+    $('#level-btn-easy').addClass("clicked");//happens in both
+    $('#level-btn-easy').parent().attr('id','difficulty');//happens in index
+    $("input[type='hidden'][name='difficulty']").val("easy");//happens in index
 });
 $('#level-btn-hard').on('click',function(){
     $(".difficulties a").removeClass("clicked");
@@ -174,6 +174,15 @@ $("#register-form").validate({
             // todo add ajax for backend
             // form.submit();
         }
+});
+$('#easy').on('click',function(){
+    $.ajax({
+        type: "GET",
+        url: 'edit-easy',
+        success: function() {
+            console.log(data);
+        }
+    })
 });
 
 

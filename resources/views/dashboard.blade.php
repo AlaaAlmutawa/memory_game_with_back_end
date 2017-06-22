@@ -36,9 +36,9 @@
                                                     <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                                     <p>Pick a difficulty option to edit</p>
                                                     <ul>
-                                                        <li id="difficulty" value="easy"><a href="#" id="level-btn-easy">EASY</a> |</li> <!--remove the id from the li accordingly-->
-                                                        <li value="medium"><a href="#" id="level-btn-medium">MEDIUM</a> |</li>
-                                                        <li value="hard"><a href="#" id="level-btn-hard">HARD</a></li>
+                                                        <li><a href="#" id="easy">EASY</a> |</li> <!--remove the id from the li accordingly-->
+                                                        <li><a href="#" id="medium">MEDIUM</a> |</li>
+                                                        <li><a href="#" id="hard">HARD</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="popup hidden">
