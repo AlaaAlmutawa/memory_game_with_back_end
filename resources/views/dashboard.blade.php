@@ -41,7 +41,11 @@
                                                         <li><a href="#" id="hard">HARD</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="popup hidden">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="edit-admin">
                                                     {!! Form::open(['url'=> 'edit-options', 'method' => 'post', 'id'=>'edit-difficulty']) !!}
                                                     <h3>
                                                         Edit Level Option: <span id="edit-level-option"></span>
@@ -63,34 +67,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--wanna display all the users their times-->
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Phone Number</th>
-                                        <th>Time Record</th>
-                                        <th>Difficulty</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!--view how many shares-->
-                        </div>
-                        <div class="col-md-6">
-                            <!--view how many clicks-->
                         </div>
                     </div>
                 </div>
