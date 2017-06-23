@@ -181,7 +181,7 @@ $('#easy').on('click',function(){
         url: '/edit-easy',
         success: function(data) {
             $('.popup').removeClass("hidden");
-            $('.popup h3').attr('id',data['id']);
+            $('#difficulty').val(data['difficulty']);
             $('#edit-level-option').text("Easy");
             $('#cols').val(data['cols']);
             $('#rows').val(data['rows']);
@@ -194,7 +194,7 @@ $('#medium').on('click',function(){
         url: '/edit-medium',
         success: function(data) {
             $('.popup').removeClass("hidden");
-            $('.popup h3').attr('id',data['id']);
+            $('#difficulty').val(data['difficulty']);
             $('#edit-level-option').text("Medium");
             $('#cols').val(data['cols']);
             $('#rows').val(data['rows']);
@@ -207,24 +207,26 @@ $('#hard').on('click',function(){
         url: '/edit-hard',
         success: function(data) {
             $('.popup').removeClass("hidden");
-            $('.popup h3').attr('id',data['id']);
+            $('#difficulty').val(data['difficulty']);
             $('#edit-level-option').text(data["Hard"]);
             $('#cols').val(data['cols']);
             $('#rows').val(data['rows']);
         }
     })
 });
-$('#submit_changes').on('click', function(){
-    var $id = $('.popup h3').id;
 
+$('#edit-difficulty').submit(function(e){
+    e.preventDefault();
+    var data = $(this).serializeArray();
     $.ajax({
         type: "POST",
         url: '/edit-options',
-        data: { "id": };
-        success: function() {
-            console.log("done");
+        data: data,
+        success: function (data) {
+            console.log(data);
         }
-    })
+    });
+
 });
 
 

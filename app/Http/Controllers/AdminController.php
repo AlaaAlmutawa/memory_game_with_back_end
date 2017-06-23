@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\GameOption;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
@@ -24,7 +25,18 @@ class AdminController extends Controller
         $gameOption = GameOption::where('difficulty','hard')->first();
         return $gameOption;
     }
-    public function saveGameEdits(){
-
+    public function saveGameEdits(Request $request){
+            $gameOption = GameOption::where('difficulty',$request->get('difficulty'))->first();
+            if($gameOption != null) {
+                $gameOption->cols = $request->get('cols');
+                $gameOption->rows = $request->get('rows');
+            }else{
+                $gameOption = new GameOption();
+                $gameOption->difficulty = $request->get('difficulty');
+                $gameOption->cols = $request->get('cols');
+                $gameOption->rows = $request->get('rows');
+            }
+            $gameOption->save();
+            return [];
     }
 }
