@@ -62,8 +62,39 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--wanna display all the users their times-->
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Time Record</th>
+                                        <th>Difficulty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--view how many shares-->
+                        </div>
+                        <div class="col-md-6">
+                            <!--view how many clicks-->
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 @stop

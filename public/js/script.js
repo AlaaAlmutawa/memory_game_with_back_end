@@ -226,7 +226,7 @@ $('#edit-difficulty').submit(function(e){
             console.log(data);
         }
     });
-
+    $('.popup').addClass("hidden");
 });
 
 
