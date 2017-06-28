@@ -228,6 +228,17 @@ $('#edit-difficulty').submit(function(e){
     });
     $('.popup').addClass("hidden");
 });
+$('#fb').submit(function(e){
+    e.preventDefault();
+    var data = $(this).serializeArray();
+   $.ajax({
+        type: "POST",
+        url: '/share',
+        data: data,
+        success: function(){
+        }
+   });
+});
 
 
 

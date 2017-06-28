@@ -8,6 +8,15 @@
                 <div class="section">
                     <div class="row">
                         <div class="col-md-12">
+                            <ul class="nav">
+                                <li><a href="/display_info">View all players</a></li> <!-- these buttons are clickable and should align right-->
+                                <li><a href="/dashboard">Edit Options</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <!--wanna display all the users their times-->
                             <table class="table table-striped">
                                 <thead>
@@ -21,6 +30,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $shares = 0?>
                                     @foreach ($players as $player)
                                         <tr>
                                             <td>{{$player->first_name}}</td>
@@ -30,6 +40,9 @@
                                             <td>{{$player->time_record}}</td>
                                             <td>{{$player->difficulty}}</td>
                                         </tr>
+                                        @if($player->shared_fb==1)
+                                            <?php $shares++;?>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -38,6 +51,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <!--view how many shares-->
+                            @if($shares>1)
+                            <p> {{$shares}} players </p>
+                            @else
+                            <p>{{$shares}} player</p>
+                            @endif
                         </div>
                         <div class="col-md-6">
                             <!--view how many clicks-->

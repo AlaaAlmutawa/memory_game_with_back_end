@@ -75,13 +75,18 @@
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <div class="text without-padding">
+                                <div    class="text without-padding">
+                                    {!! Form::open(['url'=> 'share', 'method' => 'post']) !!}
+                                    <input type="hidden" id="user_id" name="user_id" value="{{$user_id}}">
+                                    <button type="submit" id="fb">
                                     <a class="small">
                                         Click Here to Share Your
                                     </a><br/>
                                     <a class="fb-text">
                                         Scores On Facebook!
                                     </a>
+                                    </button>
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
@@ -89,5 +94,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @stop

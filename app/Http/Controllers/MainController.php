@@ -1,24 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\GameOption;
 use App\Player;
-use Illuminate\Support\Facades\DB;
-use App\Http\Requests\RegisterRequest;
-use Illuminate\Support\Facades\Request;
+
+use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     //
     public function index(){
-        return view('index');
+        $easy = GameOption::where('difficulty', 'easy');
+        return view('index',compact('easy'));
     }
-    public function register(){
-        $input = Request::all();
-        Player::create($input);
-        return redirect('congratulations');
+    public function register(Request $request){
+        $input = $request->all();
+        $object = Player::create($input);
+        $user_id= $object->id;
+        return redirect('congratulations')->with('user_id',$user_id);
     }
     public function congratulations(){
-        return view('congratulations');
+        $user_id = session("user_id");
+        return view('congratulations',compact("user_id"));
+    }
+    public function fbshare(Request $request){
+        $player = Player::where('id',$request->get('user_id'))->first();
+        $player->shared_fb = true;
+        $player->save();
+        return [];
     }
 }

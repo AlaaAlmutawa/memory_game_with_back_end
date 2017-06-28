@@ -8,6 +8,15 @@
                 <div class="section">
                     <div class="row">
                         <div class="col-md-12">
+                            <ul class="nav">
+                                <li><a href="/display_info">View all players</a></li> <!-- these buttons are clickable and should align right-->
+                                <li><a href="/dashboard">Edit Options</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-sm-2 without-padding">
                                     <div class="sephora-logo">

@@ -24,6 +24,8 @@ Route::get('edit-medium', 'GameDifficultyController@editMedium');
 Route::get('edit-hard', 'GameDifficultyController@editHard');
 Route::post('edit-options', 'GameDifficultyController@saveGameEdits');
 Route::get('display_info', 'AdminController@players');
+Route::post('share', 'MainController@fbshare');
+
 
 
 
