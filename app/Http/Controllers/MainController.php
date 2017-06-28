@@ -11,8 +11,7 @@ class MainController extends Controller
 {
     //
     public function index(){
-        $easy = GameOption::where('difficulty', 'easy');
-        return view('index',compact('easy'));
+        return view('index');
     }
     public function register(Request $request){
         $input = $request->all();

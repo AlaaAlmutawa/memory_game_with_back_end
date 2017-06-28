@@ -204,7 +204,7 @@
                                     <div class="col-md-12 without-padding">
                                         <div class="game-container">
                                             <!--the circles and squares-->
-                                            <div class="disks">
+                                            <div class="disks" id="disks_container">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="disk">

@@ -8,8 +8,8 @@ var minutes = 0;
 var hours = 0;
 var t;
  var gameArray = [];
-var cols = 5;
-var row = 4;
+var cols;
+var rows;
 var time;
 function add() {
     seconds++;
@@ -49,13 +49,21 @@ function removeLevelsDiv(){
     $('.difficulties').addClass("hidden");
 }
 function fillColors(){ //fill the colors behind the disks to be revealed once the disk is clicked
-    var colors = ['#6b4052', '#edcbd4', '#f8cd62', '#7c6258', '#9a986f', '#896539', '#009cb7', '#3f6bae', '#6a5994', '#8fc9c2' ]; //the number of colors have to be hlf the number of the disks
+    var $disks = $('.disk');
+    var colors = [];
+    var $disks_number = $disks.length;
+    console.log($disks_number);
+    for(i = 0; i<$disks_number/2; i++){
+        var color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        colors.push(color);
+    }
+    //var colors = ['#6b4052', '#edcbd4', '#f8cd62', '#7c6258', '#9a986f', '#896539', '#009cb7', '#3f6bae', '#6a5994', '#8fc9c2' ]; //the number of colors have to be hlf the number of the disks
     colors = shuffleArray(colors);
     var i = 0;
-    for(var x=0; x<row; x++){
+    for(var x=0; x<rows; x++){
         gameArray[x] = [];
         for(var y=0; y<cols; y++){
-            if(i==10){
+            if(i==$disks_number/2){
                 i = 0;
             }
             gameArray[x][y]=colors[i];
@@ -65,7 +73,7 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
     gameArray.forEach(shuffleArray);
     i = 0;
     var disks = $('div.disk');
-    for(x=0; x<row;x++){
+    for(x=0; x<rows;x++){
         for(y=0; y<cols; y++){
             disks.eq(i).attr("id",''+x+','+y+'');
             i++;
@@ -102,7 +110,7 @@ function checkGame(){
     }
 }
 function gameIsOver(){
-    if($('.found').length==cols*row){
+    if($('.found').length==cols*rows){
         return true; //game is done
     }else{
         return false;
@@ -133,6 +141,28 @@ $('#level-btn-easy').on('click',function(){
     $('#level-btn-easy').addClass("clicked");//happens in both
     $('#level-btn-easy').parent().attr('id','difficulty');//happens in index
     $("input[type='hidden'][name='difficulty']").val("easy");//happens in index
+    $.ajax({
+        type: "GET",
+        url: '/display_easy',
+        success: function(data) {
+            var $disk_container =$('#disks_container');
+            $disk_container.html('');
+            cols = data['cols'];
+            rows = data['rows'];
+            for(i = 0; i<rows; i++) {
+                var $div = $("<div>", {"class": "row"});
+                var $div2 = $("<div>", {"class":"col-md-12"});
+                for(j = 0; j<cols; j++){
+                    $disk = $("<div>", {"class":"disk"});
+                    $div2.append($disk);
+                }
+                $div.append($div2);
+                $disk_container.append($div);
+            }
+
+
+        }
+    });
 });
 $('#level-btn-hard').on('click',function(){
     $(".difficulties a").removeClass("clicked");
@@ -140,7 +170,28 @@ $('#level-btn-hard').on('click',function(){
     $('#level-btn-hard').addClass("clicked");
     $('#level-btn-hard').parent().attr('id','difficulty');
     $("input[type='hidden'][name='difficulty']").val("hard");
+    $.ajax({
+        type: "GET",
+        url: '/display_hard',
+        success: function(data) {
+            var $disk_container =$('#disks_container');
+            $disk_container.html('');
+            cols = data['cols'];
+            rows = data['rows'];
+            for(i = 0; i<rows; i++) {
+                var $div = $("<div>", {"class": "row"});
+                var $div2 = $("<div>", {"class":"col-md-12"});
+                for(j = 0; j<cols; j++){
+                    $disk = $("<div>", {"class":"disk"});
+                    $div2.append($disk);
+                }
+                $div.append($div2);
+                $disk_container.append($div);
+            }
 
+
+        }
+    });
 
 
 });
@@ -150,6 +201,28 @@ $('#level-btn-medium').on('click',function(){
     $('#level-btn-medium').addClass("clicked");
     $('#level-btn-medium').parent().attr('id','difficulty');
     $("input[type='hidden'][name='difficulty']").attr('value', 'medium');
+    $.ajax({
+        type: "GET",
+        url: '/display_medium',
+        success: function(data) {
+            var $disk_container =$('#disks_container');
+            $disk_container.html('');
+            cols = data['cols'];
+            rows = data['rows'];
+            for(i = 0; i<rows; i++) {
+                var $div = $("<div>", {"class": "row"});
+                var $div2 = $("<div>", {"class":"col-md-12"});
+                for(j = 0; j<cols; j++){
+                    $disk = $("<div>", {"class":"disk"});
+                    $div2.append($disk);
+                }
+                $div.append($div2);
+                $disk_container.append($div);
+            }
+
+
+        }
+    });
 });
 $("#register-form").validate({
         // Specify validation rules
