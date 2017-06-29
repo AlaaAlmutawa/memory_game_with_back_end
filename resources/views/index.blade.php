@@ -81,7 +81,7 @@
                             {!! Form::open(['url'=> 'index', 'method' => 'post']) !!}
                                 <h1>Your Time: </h1>
                                 <div class="form-group">
-                                    <input type="hidden" name="time_record" value="00:00:00">
+                                    <input type="hidden" id="time_record" name="time_record" value="00:00:00">
                                     <input type="hidden" name="difficulty" value="easy">
                                 </div>
                                 <div class="form-group">
@@ -109,92 +109,8 @@
                             </div>
                         </div>
                         <div class="col-md-9"> <!--game-->
-                            <div class="game">
-                                <div class="row">
-                                    <div class="col-md-12 without-padding">
-                                        <div class="game-container">
-                                            <!--the circles and squares-->
-                                            <div class="disks" id="disks_container">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="disk">
+                            <div class="game" id="game">
 
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                        <div class="disk">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

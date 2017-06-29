@@ -11,16 +11,22 @@ class DisplayController extends Controller
 {
     //
     public function easy(){
-        $game = GameOption::where('difficulty','easy')->first();
-        return $game;
+        $gameOption = GameOption::where('difficulty','easy')->first();
+        $view = View::make('disks')->with('gameOption',$gameOption);
+        $view->render();
+        return $view;
     }
     public function medium(){
-        $game = GameOption::where('difficulty','medium')->first();
-        return $game;
+        $gameOption = GameOption::where('difficulty','medium')->first();
+        $view = View::make('disks')->with('gameOption',$gameOption);
+        $view->render();
+        return $view;
     }
     public function hard(){
-        $game = GameOption::where('difficulty','hard')->first();
-        return $game;
+        $gameOption = GameOption::where('difficulty','hard')->first();
+        $view = View::make('disks')->with('gameOption',$gameOption);
+        $view->render();
+        return $view;
     }
     public function top_10(Request $request){
         $difficulty = $request->get('difficulty');

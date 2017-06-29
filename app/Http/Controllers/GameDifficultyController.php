@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Input;
 class GameDifficultyController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function editEasy(){
         $gameOption = GameOption::where('difficulty','easy')->first();
         return $gameOption;

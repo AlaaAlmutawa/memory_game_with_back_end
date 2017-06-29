@@ -27,6 +27,11 @@ class MainController extends Controller
         $player = Player::where('id',$request->get('user_id'))->first();
         $player->shared_fb = true;
         $player->save();
+        return redirect('/');
+    }
+    public function track_clicks(){
+        $click = new Click;
+        $click->save();
         return [];
     }
 }

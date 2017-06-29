@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!--wanna display all the users their times-->
-                            <table class="table table-striped">
+                            <table class="table table-striped table-borders">
                                 <thead>
                                 <tr>
                                     <th>First Name</th>
@@ -49,16 +49,22 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 box">
                             <!--view how many shares-->
                             @if($shares>1)
-                            <p> {{$shares}} players </p>
+                            <p> {{$shares}} Players Shared Their Results </p>
                             @else
-                            <p>{{$shares}} player</p>
+                            <p>{{$shares}} Player Shared Their Results</p>
                             @endif
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 box">
                             <!--view how many clicks-->
+                            @if($clicks>1)
+                                <p> {{$clicks}} Clicks on the Start Button</p>
+                            @else
+                                <p>{{$clicks}} Click on the Start Button</p>
+                            @endif
+
                         </div>
                     </div>
                 </div>
