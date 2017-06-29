@@ -125,6 +125,56 @@ function shuffleArray(array) {
     }
     return array;
 }
+function displayEasy(){
+        $(".difficulties a").removeClass("clicked");//happens in both
+        $('#difficulty').removeAttr('id');//doesnt matter?
+        $('#level-btn-easy').addClass("clicked");//happens in both
+        $('#level-btn-easy').parent().attr('id','difficulty');//happens in index
+        $("input[type='hidden'][name='difficulty']").val("easy");//happens in index
+        $.ajax({
+            type: "GET",
+            url: '/display_easy',
+            success: function(data) {
+                var $disk_container =$('#disks_container');
+                $disk_container.html('');
+                cols = data['cols'];
+                rows = data['rows'];
+                for(i = 0; i<rows; i++) {
+                    var $div = $("<div>", {"class": "row"});
+                    var $div2 = $("<div>", {"class":"col-md-12"});
+                    for(j = 0; j<cols; j++){
+                        $disk = $("<div>", {"class":"disk"});
+                        $div2.append($disk);
+                    }
+                    $div.append($div2);
+                    $disk_container.append($div);
+                }
+
+
+            }
+        });
+    displayTop();
+
+}
+function displayTop(){
+    var $currentLevel = $('#difficulty').attr('value');
+    console.log($currentLevel);
+    $.ajax({
+        type: "GET",
+        url: '/get_top_10',
+        data: {"difficulty":$currentLevel},
+        success: function(data) {
+            console.log(data);
+            $('.top-10').html(data);
+        }
+    })
+}
+$(document).ready(function() {
+    displayEasy();//display the game
+    //display top 10 in the easy
+    displayTop();
+
+});
 $('#start-btn').on('click', function(){
     //set a timer once clicked and show the user the time spent playing while playing
     $('#start-btn').addClass("hidden");
@@ -134,36 +184,15 @@ $('#start-btn').on('click', function(){
     timer();
     fillColors(); //method that would set each disk to a certian color that can be flipped to be reaveled
     $('.disk').click(showColorFor5Seconds);
-});
-$('#level-btn-easy').on('click',function(){
-    $(".difficulties a").removeClass("clicked");//happens in both
-    $('#difficulty').removeAttr('id');//doesnt matter?
-    $('#level-btn-easy').addClass("clicked");//happens in both
-    $('#level-btn-easy').parent().attr('id','difficulty');//happens in index
-    $("input[type='hidden'][name='difficulty']").val("easy");//happens in index
     $.ajax({
-        type: "GET",
-        url: '/display_easy',
-        success: function(data) {
-            var $disk_container =$('#disks_container');
-            $disk_container.html('');
-            cols = data['cols'];
-            rows = data['rows'];
-            for(i = 0; i<rows; i++) {
-                var $div = $("<div>", {"class": "row"});
-                var $div2 = $("<div>", {"class":"col-md-12"});
-                for(j = 0; j<cols; j++){
-                    $disk = $("<div>", {"class":"disk"});
-                    $div2.append($disk);
-                }
-                $div.append($div2);
-                $disk_container.append($div);
-            }
-
-
+        type:"POST",
+        url: '/start-game',
+        success:function(){
+            console.log("someone clicked!");
         }
     });
 });
+$('#level-btn-easy').on('click',displayEasy);
 $('#level-btn-hard').on('click',function(){
     $(".difficulties a").removeClass("clicked");
     $('#difficulty').removeAttr('id');
@@ -188,7 +217,7 @@ $('#level-btn-hard').on('click',function(){
                 $div.append($div2);
                 $disk_container.append($div);
             }
-
+            displayTop();
 
         }
     });
@@ -219,7 +248,7 @@ $('#level-btn-medium').on('click',function(){
                 $div.append($div2);
                 $disk_container.append($div);
             }
-
+            displayTop();
 
         }
     });
@@ -271,6 +300,7 @@ $('#medium').on('click',function(){
             $('#edit-level-option').text("Medium");
             $('#cols').val(data['cols']);
             $('#rows').val(data['rows']);
+
         }
     })
 });
@@ -284,6 +314,7 @@ $('#hard').on('click',function(){
             $('#edit-level-option').text(data["Hard"]);
             $('#cols').val(data['cols']);
             $('#rows').val(data['rows']);
+
         }
     })
 });
