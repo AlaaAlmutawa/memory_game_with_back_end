@@ -78,7 +78,7 @@
                                 <div    class="text without-padding">
                                     {!! Form::open(['url'=> 'share', 'method' => 'post']) !!}
                                     <input type="hidden" id="user_id" name="user_id" value="{{$user_id}}">
-                                    <button type="submit" id="fb">
+                                    <button type="submit" id="fb" class="post-ajax-request">
                                     <a class="small">
                                         Click Here to Share Your
                                     </a><br/>

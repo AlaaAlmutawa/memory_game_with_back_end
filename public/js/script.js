@@ -175,7 +175,8 @@ $(document).ready(function() {
     displayTop();
 
 });
-$('#start-btn').on('click', function(){
+$('#start-btn').on('click', function(e){
+    e.preventDefault();
     //set a timer once clicked and show the user the time spent playing while playing
     $('#start-btn').addClass("hidden");
     timer_text.removeClass("hidden");

@@ -29,6 +29,7 @@ Route::get('display_easy', 'DisplayController@easy');
 Route::get('display_medium', 'DisplayController@medium');
 Route::get('display_hard', 'DisplayController@hard');
 Route::get('get_top_10', 'DisplayController@top_10');
+Route::post('start-game','AdminController@track_clicks');
 
 
 
