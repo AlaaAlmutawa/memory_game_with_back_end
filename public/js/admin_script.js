@@ -14,7 +14,6 @@ $('.difficulty-toggle').on('click', function(){
         }
     })
 });
-// make this one function>> .. DONE
 
 $('#edit-difficulty').submit(function(e){
     e.preventDefault();
@@ -25,7 +24,6 @@ $('#edit-difficulty').submit(function(e){
         url: '/admin/edit-options',
         data: data,
         success: function (data) {
-            // todo show success message (NOT ALERT) .. DONE (need to do the layout better for the thank-you div)
             $('.thank-you').removeClass("hidden"); 
         }
     });
