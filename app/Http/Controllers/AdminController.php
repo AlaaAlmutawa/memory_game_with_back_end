@@ -20,7 +20,7 @@ class AdminController extends Controller
     }
     public function players(){
         $players = Player::all();
-        $clicks = Click::all()->last()->id;
+        $clicks = Click::count();
         return view('players', compact('players','clicks'));
     }
     public function logout(){

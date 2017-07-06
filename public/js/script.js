@@ -20,6 +20,7 @@ function shuffleArray(array) {
     }
     return array;
 }
+
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -190,6 +191,7 @@ $('#start').submit(function(e){
         }
     });
 });
+
 $('#level-btn-easy').on('click',displayEasy);
 $('#level-btn-hard').on('click',function(){
     $(".difficulties a").removeClass("clicked");
@@ -226,6 +228,8 @@ $('#level-btn-medium').on('click',function(){
         }
     });
 });
+
+// todo it's not working
 $("#register-form").validate({
         // Specify validation rules
         rules: {
@@ -250,6 +254,8 @@ $("#register-form").validate({
             // form.submit();
         }
 });
+
+// < TODO make one function
 $('#easy').on('click',function(){
     $.ajax({
         type: "GET",
@@ -263,6 +269,7 @@ $('#easy').on('click',function(){
         }
     })
 });
+
 $('#medium').on('click',function(){
     $.ajax({
         type: "GET",
@@ -277,7 +284,8 @@ $('#medium').on('click',function(){
         }
     })
 });
-$('#hard').on('click',function(){
+
+$('#hard').on('click',function() {
     $.ajax({
         type: "GET",
         url: '/edit-hard',
@@ -291,6 +299,8 @@ $('#hard').on('click',function(){
         }
     })
 });
+// TODO make one function />
+
 $('#edit-difficulty').submit(function(e){
     e.preventDefault();
     var data = $(this).serializeArray();
@@ -299,11 +309,13 @@ $('#edit-difficulty').submit(function(e){
         url: '/edit-options',
         data: data,
         success: function (data) {
+            // todo show success message (NOT ALERT)
             console.log(data);
         }
     });
     $('.popup').addClass("hidden");
 });
+
 $('#fb').submit(function(e){
     e.preventDefault();
     var data = $(this).serializeArray();

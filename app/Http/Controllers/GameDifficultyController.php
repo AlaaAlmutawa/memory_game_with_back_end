@@ -14,7 +14,7 @@ class GameDifficultyController extends Controller
     {
         $this->middleware('auth');
     }
-    public function editEasy(){
+    public function editEasy($difficulty){
         $gameOption = GameOption::where('difficulty','easy')->first();
         return $gameOption;
     }
