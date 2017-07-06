@@ -5,10 +5,12 @@ $('.difficulty-toggle').on('click', function(){
     $.ajax({
         type: "GET", 
         url: '/admin/edit', 
-        data: {'difficulty':data}, 
+        data: {'difficulty':data},
+        beforeSend: function(){
+            $('#difficulty-level').val(data);
+            $('#edit-level-option').text(data);
+        }, 
         success: function(data){
-            $('#difficulty-level').val(data['difficulty']);
-            $('#edit-level-option').text(data['difficulty']);
             $('#cols').val(data['cols']);
             $('#rows').val(data['rows']);
         }
