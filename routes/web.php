@@ -11,30 +11,23 @@
 |
 */
 
-Route::get('/','MainController@index');
-Route::get('congratulations','MainController@congratulations');
-
+Route::get('/','Web_Controller\MainController@index');
+Route::get('congratulations','Web_Controller\MainController@congratulations');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('index', 'MainController@register');
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('dashboard', 'AdminController@dashboard');
-});
-
-Route::get('edit-easy', 'GameDifficultyController@editEasy');
-Route::get('edit-medium', 'GameDifficultyController@editMedium');
-Route::get('edit-hard', 'GameDifficultyController@editHard');
-Route::post('edit-options', 'GameDifficultyController@saveGameEdits');
-Route::get('display_info', 'AdminController@players');
-Route::post('share', 'MainController@fbshare');
-Route::get('display_easy', 'DisplayController@easy');
-Route::get('display_medium', 'DisplayController@medium');
-Route::get('display_hard', 'DisplayController@hard');
-Route::get('get_top_10', 'DisplayController@top_10');
-Route::post('start-game','MainController@track_clicks');
-Route::get('logout', 'AdminController@logout');
+/*Route::group(['middleware' => 'auth'], function () {
+    Route::get('admin/dashboard', 'Admin_Controller\AdminController@dashboard');
+    Route::get('admin/edit', 'Admin_Controller\GameDifficultyController@edit');
+    Route::post('admin/edit-options', 'Admin_Controller\GameDifficultyController@saveGameEdits');
+    Route::get('admin/display_info', 'Admin_Controller\AdminController@players');
+    Route::get('admin/logout', 'Admin_Controller\AdminController@logout');
+});*/
+Route::post('index', 'Web_Controller\MainController@register');
+Route::post('share', 'Web_Controller\MainController@fbshare');
+Route::get('display_easy', 'Web_Controller\DisplayController@easy');
+Route::get('display_medium', 'Web_Controller\DisplayController@medium');
+Route::get('display_hard', 'Web_Controller\DisplayController@hard');
+Route::get('get_top_10', 'Web_Controller\DisplayController@top_10');
+Route::post('start-game','Web_Controller\MainController@track_clicks');
 
 
 

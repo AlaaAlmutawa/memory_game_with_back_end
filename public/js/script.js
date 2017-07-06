@@ -1,7 +1,7 @@
 /**
  * Created by alaaj on 6/14/17.
  */
-
+/*
 var timer_text = $('#timer');
 var seconds = 0;
 var minutes = 0;
@@ -11,6 +11,7 @@ var t;
 var cols;
 var rows;
 var time;
+//for game 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -34,13 +35,11 @@ function add() {
     time = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
     timer_text.text(time);
     timer();
-    console.log("i am here");
 }
 function timer() {
     if(!gameIsOver()) {
         t = setTimeout(add, 1000);
     }else{
-        console.log(time);
         afterGame();
         return true;
     }
@@ -62,8 +61,6 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
     var $disks = $('.disk');
     var colors = [];
     var $disks_number = $disks.length;
-    console.log($disks_number);
-    console.log(colors.length);
     while(colors.length<=$disks_number/2){
         var color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
         if(color!='#b9babb' && color.length==7) {
@@ -85,7 +82,6 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
             gameArray[x][y]=colors[i];
             $disks.eq(j).attr("id",''+x+','+y+'');
            $disks.eq(j).children().eq(1).css('background-color', color);
-            console.log("id",''+x+','+y+'');
             j++;
             i++;
         }
@@ -95,10 +91,8 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
 function showColorFor5Seconds(){
     var element = $(this);
     var id = element.attr('id');
-    console.log(id);
     var fields = id.split(',');
     var color = gameArray[fields[0]][fields[1]];
-    console.log(color);
     if($('.disk-clicked').length<2) {
         //element.css('background-color', color);
         element.addClass("disk-clicked");
@@ -117,10 +111,8 @@ function showColorFor5Seconds(){
     }
 }
 function checkGame(){
-    console.log("checkGame is being called")
     var clickedDisk = $('.disk-clicked');
     if(clickedDisk.eq(0).css("background-color") == clickedDisk.eq(1).css("background-color")){
-        console.log("found tWO");
         clickedDisk.addClass("found");
         clickedDisk.removeClass("disk-clicked");
 
@@ -133,6 +125,29 @@ function gameIsOver(){
         return false;
     }
 }
+$('#start').submit(function(e){
+    e.preventDefault();
+    //set a timer once clicked and show the user the time spent playing while playing
+    var data = $(this).serializeArray();
+    $.ajax({
+        type:"POST",
+        url: '/start-game',
+        data: data,
+        success:function(){
+            cols = $('#cols_number').val();
+            rows = $('#rows_number').val();
+            $('#start-btn').addClass("hidden");
+            timer_text.removeClass("hidden");
+            timer_text.text("00:00:00");
+            removeLevelsDiv();
+            fillColors(); //method that would set each disk to a certian color that can be flipped to be reaveled
+            timer();
+            $('.disk').click(showColorFor5Seconds);
+        }
+    });
+});
+//web
+/*
 function displayEasy(){
         $(".difficulties a").removeClass("clicked");//happens in both
         $('#difficulty').removeAttr('id');//doesnt matter?
@@ -152,13 +167,11 @@ function displayEasy(){
 }
 function displayTop(){
     var $currentLevel = $('#difficulty').attr('value');
-    console.log($currentLevel);
     $.ajax({
         type: "GET",
         url: '/get_top_10',
         data: {"difficulty":$currentLevel},
         success: function(data) {
-            console.log(data);
             $('.top-10').html(data);
         }
     })
@@ -168,28 +181,6 @@ $(document).ready(function() {
     //display top 10 in the easy
     displayTop();
 
-});
-$('#start').submit(function(e){
-    e.preventDefault();
-    //set a timer once clicked and show the user the time spent playing while playing
-    var data = $(this).serializeArray();
-    $.ajax({
-        type:"POST",
-        url: '/start-game',
-        data: data,
-        success:function(){
-            console.log("someone clicked!");
-            cols = $('#cols_number').val();
-            rows = $('#rows_number').val();
-            $('#start-btn').addClass("hidden");
-            timer_text.removeClass("hidden");
-            timer_text.text("00:00:00");
-            removeLevelsDiv();
-            fillColors(); //method that would set each disk to a certian color that can be flipped to be reaveled
-            timer();
-            $('.disk').click(showColorFor5Seconds);
-        }
-    });
 });
 
 $('#level-btn-easy').on('click',displayEasy);
@@ -204,7 +195,6 @@ $('#level-btn-hard').on('click',function(){
         url: '/display_hard',
         success: function(data) {
             $('#game').html(data);
-            console.log(data);
             displayTop();
 
         }
@@ -254,68 +244,6 @@ $("#register-form").validate({
             // form.submit();
         }
 });
-
-// < TODO make one function
-$('#easy').on('click',function(){
-    $.ajax({
-        type: "GET",
-        url: '/edit-easy',
-        success: function(data) {
-            $('.popup').removeClass("hidden");
-            $('#difficulty').val(data['difficulty']);
-            $('#edit-level-option').text("Easy");
-            $('#cols').val(data['cols']);
-            $('#rows').val(data['rows']);
-        }
-    })
-});
-
-$('#medium').on('click',function(){
-    $.ajax({
-        type: "GET",
-        url: '/edit-medium',
-        success: function(data) {
-            $('.popup').removeClass("hidden");
-            $('#difficulty').val(data['difficulty']);
-            $('#edit-level-option').text("Medium");
-            $('#cols').val(data['cols']);
-            $('#rows').val(data['rows']);
-
-        }
-    })
-});
-
-$('#hard').on('click',function() {
-    $.ajax({
-        type: "GET",
-        url: '/edit-hard',
-        success: function(data) {
-            $('.popup').removeClass("hidden");
-            $('#difficulty').val(data['difficulty']);
-            $('#edit-level-option').text("Hard");
-            $('#cols').val(data['cols']);
-            $('#rows').val(data['rows']);
-
-        }
-    })
-});
-// TODO make one function />
-
-$('#edit-difficulty').submit(function(e){
-    e.preventDefault();
-    var data = $(this).serializeArray();
-    $.ajax({
-        type: "POST",
-        url: '/edit-options',
-        data: data,
-        success: function (data) {
-            // todo show success message (NOT ALERT)
-            console.log(data);
-        }
-    });
-    $('.popup').addClass("hidden");
-});
-
 $('#fb').submit(function(e){
     e.preventDefault();
     var data = $(this).serializeArray();
@@ -327,6 +255,42 @@ $('#fb').submit(function(e){
         }
    });
 });
+//admin 
+// < TODO make one  ... DONE
+/*
+$('.difficulty-toggle').on('click', function(){
+    var data = $(this).data('id');
+    $('.thank-you').addClass("hidden"); 
+    $('.edit-admin').removeClass("hidden");
+    $.ajax({
+        type: "GET", 
+        url: '/edit', 
+        data: {'difficulty':data}, 
+        success: function(data){
+            $('#difficulty-level').val(data['difficulty']);
+            $('#edit-level-option').text(data['difficulty']);
+            $('#cols').val(data['cols']);
+            $('#rows').val(data['rows']);
+        }
+    })
+});
+// make this one function>> .. DONE
+
+$('#edit-difficulty').submit(function(e){
+    e.preventDefault();
+    $('.edit-admin').addClass("hidden"); 
+    var data = $(this).serializeArray();
+    $.ajax({
+        type: "POST",
+        url: '/edit-options',
+        data: data,
+        success: function (data) {
+            // todo show success message (NOT ALERT) .. DONE (need to do the layout better for the thank-you div)
+            $('.thank-you').removeClass("hidden"); 
+        }
+    });
+});
+*/
 
 
 

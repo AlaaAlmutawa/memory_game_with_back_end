@@ -226,20 +226,26 @@ img {
     margin: 0 auto;
     .disk {
       .front {
+        background-color: #b9babb;
         position: absolute;
         top: 0;
         width: inherit;
         height: inherit;
         transform: perspective(600px) rotateY(0deg);
         transition: transform 0.5s linear 0s;
+        border-radius: 50%;
+
       }
       .back {
         position: absolute;
         top: 0;
+        width: inherit;
+        height: inherit;
         transform: perspective(600px) rotateY(180deg);
         transition: transform 0.5s linear 0s;
+        border-radius: 50%;
+
       }
-      background-color: #b9babb;
       border-radius: 50%;
       margin-top: 10px;
       width: 90px;
