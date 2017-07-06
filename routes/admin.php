@@ -1,4 +1,6 @@
-<?php 
+<?php
+Auth::routes();
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', 'Admin_Controller\AdminController@dashboard');
     Route::get('edit', 'Admin_Controller\GameDifficultyController@edit');
