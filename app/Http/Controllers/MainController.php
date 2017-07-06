@@ -6,6 +6,7 @@ use App\GameOption;
 use App\Player;
 
 use Illuminate\Http\Request;
+use App\Click;
 
 class MainController extends Controller
 {

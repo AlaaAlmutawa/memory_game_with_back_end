@@ -65,9 +65,9 @@
                         </div>
                         <div class="col-md-4 col-md-offset-2">
                             <!--button-->
-                            {!! Form::open(['url'=> 'start-game', 'method' => 'post']) !!}
-                                <button type="submit" class="post-ajax-request">
-                                    <a class="start" id="start-btn">START</a>
+                            {!! Form::open(['url'=> 'start-game', 'method' => 'post', 'id'=>'start']) !!}
+                                <button type="submit" class="post-ajax-request start" id="start-btn">
+                                    START
                                 </button>
                             {!! Form::close() !!}
                             <p class="timer hidden" id="timer"></p>

@@ -11,6 +11,15 @@ var t;
 var cols;
 var rows;
 var time;
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -53,19 +62,19 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
     var colors = [];
     var $disks_number = $disks.length;
     console.log($disks_number);
+    console.log(colors.length);
     while(colors.length<=$disks_number/2){
         var color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
         if(color!='#b9babb' && color.length==7) {
             colors.push(color);
         }
     }
-    /*
-    for(i = 0; i<$disks_number/2; i++){
-
-    }*/
     //var colors = ['#6b4052', '#edcbd4', '#f8cd62', '#7c6258', '#9a986f', '#896539', '#009cb7', '#3f6bae', '#6a5994', '#8fc9c2' ]; //the number of colors have to be hlf the number of the disks
     colors = shuffleArray(colors);
+   // console.log("affter shuffle")
     var i = 0;
+    var j = 0;
+    //console.log("loop"+ rows);
     for(var x=0; x<rows; x++){
         gameArray[x] = [];
         for(var y=0; y<cols; y++){
@@ -73,18 +82,14 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
                 i = 0;
             }
             gameArray[x][y]=colors[i];
+            $disks.eq(j).attr("id",''+x+','+y+'');
+           $disks.eq(j).children().eq(1).css('background-color', color);
+            console.log("id",''+x+','+y+'');
+            j++;
             i++;
         }
     }
     gameArray.forEach(shuffleArray);
-    i = 0;
-    var disks = $('div.disk');
-    for(x=0; x<rows;x++){
-        for(y=0; y<cols; y++){
-            disks.eq(i).attr("id",''+x+','+y+'');
-            i++;
-        }
-    }
 }
 function showColorFor5Seconds(){
     var element = $(this);
@@ -94,15 +99,20 @@ function showColorFor5Seconds(){
     var color = gameArray[fields[0]][fields[1]];
     console.log(color);
     if($('.disk-clicked').length<2) {
-        element.css('background-color', color);
+        //element.css('background-color', color);
         element.addClass("disk-clicked");
+        element.find('.back').css('transform', 'translateY(0 deg)');
+        element.find('.front').css('transform', 'translateY(-180 deg)');
         checkGame();
     }else{
         checkGame();
-        $('.disk-clicked').css('background-color','#b9babb');
+        //$('.disk-clicked').css('background-color','#b9babb');
+        $('.flip').removeClass('flip');
+        $('.disk-clicked').childern.eq(0).addClass("flip");
         $('.disk-clicked').removeClass("disk-clicked");
         element.css('background-color', color);
         element.addClass("disk-clicked");
+        element.childern().eq(1).addClass("flip");
     }
 }
 function checkGame(){
@@ -122,15 +132,6 @@ function gameIsOver(){
         return false;
     }
 }
-function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-}
 function displayEasy(){
         $(".difficulties a").removeClass("clicked");//happens in both
         $('#difficulty').removeAttr('id');//doesnt matter?
@@ -142,6 +143,7 @@ function displayEasy(){
             url: '/display_easy',
             success: function(data) {
                 $('#game').html(data);
+
             }
         });
     displayTop();
@@ -166,21 +168,25 @@ $(document).ready(function() {
     displayTop();
 
 });
-$('#start-btn').on('click', function(e){
+$('#start').submit(function(e){
     e.preventDefault();
     //set a timer once clicked and show the user the time spent playing while playing
-    $('#start-btn').addClass("hidden");
-    timer_text.removeClass("hidden");
-    timer_text.text("00:00:00");
-    removeLevelsDiv();
-    timer();
-    fillColors(); //method that would set each disk to a certian color that can be flipped to be reaveled
-    $('.disk').click(showColorFor5Seconds);
+    var data = $(this).serializeArray();
     $.ajax({
         type:"POST",
         url: '/start-game',
+        data: data,
         success:function(){
             console.log("someone clicked!");
+            cols = $('#cols_number').val();
+            rows = $('#rows_number').val();
+            $('#start-btn').addClass("hidden");
+            timer_text.removeClass("hidden");
+            timer_text.text("00:00:00");
+            removeLevelsDiv();
+            fillColors(); //method that would set each disk to a certian color that can be flipped to be reaveled
+            timer();
+            $('.disk').click(showColorFor5Seconds);
         }
     });
 });
