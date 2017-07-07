@@ -30,6 +30,7 @@ function add() {
     time = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
     timer_text.text(time);
     timer();
+     
 }
 function timer() {
     if(!gameIsOver()) {
@@ -91,7 +92,7 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
 
 }
 function flipped(){
-    checkMemoryGameConditions(); 
+    //checkMemoryGameConditions(); 
    $(this).addClass('flipped');
     checkGame(); 
 }
@@ -110,7 +111,8 @@ function checkGame(){
             flippedDisk.addClass("found");
             flippedDisk.off('click');
             flippedDisk.removeClass("flipped");
-
+        }else{
+            setTimeout(checkMemoryGameConditions,500);
         }
     }
 }
