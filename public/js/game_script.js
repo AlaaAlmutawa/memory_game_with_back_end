@@ -81,7 +81,6 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
     gameArray.forEach(shuffleArray);
     for(var i = 0; i < $disks.length; i++){
         var id = $disks.eq(i).attr('id'); 
-        console.log(id);
         var coordinates = id.split(',');
         var x = coordinates[0]; 
         var y = coordinates[1]; 
@@ -106,7 +105,6 @@ function checkGame(){
     var flippedDisk = $('.flipped');
     if(flippedDisk.length == 2){
         if(flippedDisk.eq(0).children().eq(1).css("background-color") == flippedDisk.eq(1).children().eq(1).css("background-color")){
-            console.log(flippedDisk.eq(0).css("background-color") + " " + flippedDisk.eq(1).css("background-color"))
             flippedDisk.addClass("found");
             flippedDisk.off('.flip'); 
             flippedDisk.addClass("found");
@@ -117,7 +115,6 @@ function checkGame(){
     }
 }
 function gameIsOver(){
-    console.log('gameisover got called');
     if($('.found').length==cols*rows){
         return true; //game is done
     }else{

@@ -1,3 +1,11 @@
+<?php 
+    if($gameOption->cols > 6){
+        $disk = "small-disk";
+    }else{
+        $disk = "";
+    }
+     ?>
+    }
 <div class="row">
     <div class="col-md-12 without-padding">
         <div class="game-container">
@@ -9,7 +17,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         @for($y=0; $y<$gameOption->cols;$y++)
-                        <div class="disk" id="disk">
+                        <div class="{{$disk}} disk" id="disk">
                            <div class="front">
 
                             </div>
