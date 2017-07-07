@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         @for($y=0; $y<$gameOption->cols;$y++)
-                        <div class="disk">
+                        <div class="disk" id="disk">
                            <div class="front">
 
                             </div>

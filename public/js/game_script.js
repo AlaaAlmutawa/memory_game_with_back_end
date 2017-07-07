@@ -73,44 +73,51 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
             }
             gameArray[x][y]=colors[i];
             $disks.eq(j).attr("id",''+x+','+y+'');
-           $disks.eq(j).children().eq(1).css('background-color', colors[i]);
+           $disks.flip(); 
             j++;
             i++;
         }
     }
     gameArray.forEach(shuffleArray);
+    for(var i = 0; i < $disks.length; i++){
+        var id = $disks.eq(i).attr('id'); 
+        console.log(id);
+        var coordinates = id.split(',');
+        var x = coordinates[0]; 
+        var y = coordinates[1]; 
+        $disks.eq(i).children().eq(1).css('background-color', gameArray[x][y]);
+
+    }
+    $disks.on('click',flipped); 
+
 }
-function showColorFor5Seconds(){
-    var element = $(this);
-    var id = element.attr('id');
-    var fields = id.split(',');
-    var color = gameArray[fields[0]][fields[1]];
-    if($('.disk-clicked').length<2) {
-        //element.css('background-color', color);
-        element.addClass("disk-clicked");
-        element.find('.back').css('transform', 'translateY(180 deg)');
-        element.find('.front').css('transform', '');
-        checkGame();
-    }else{
-        checkGame();
-        //$('.disk-clicked').css('background-color','#b9babb');
-        $('.flip').removeClass('flip');
-        $('.disk-clicked').childern.eq(0).addClass("flip");
-        $('.disk-clicked').removeClass("disk-clicked");
-        element.css('background-color', color);
-        element.addClass("disk-clicked");
-        element.childern().eq(1).addClass("flip");
+function flipped(){
+    checkMemoryGameConditions(); 
+   $(this).addClass('flipped');
+    checkGame(); 
+}
+function checkMemoryGameConditions(){
+    if($('.flipped').length >= 2){
+        $('.flipped').flip(false);
+        $('.flipped').removeClass('flipped');
     }
 }
 function checkGame(){
-    var clickedDisk = $('.disk-clicked');
-    if(clickedDisk.eq(0).css("background-color") == clickedDisk.eq(1).css("background-color")){
-        clickedDisk.addClass("found");
-        clickedDisk.removeClass("disk-clicked");
+    var flippedDisk = $('.flipped');
+    if(flippedDisk.length == 2){
+        if(flippedDisk.eq(0).children().eq(1).css("background-color") == flippedDisk.eq(1).children().eq(1).css("background-color")){
+            console.log(flippedDisk.eq(0).css("background-color") + " " + flippedDisk.eq(1).css("background-color"))
+            flippedDisk.addClass("found");
+            flippedDisk.off('.flip'); 
+            flippedDisk.addClass("found");
+            flippedDisk.off('click');
+            flippedDisk.removeClass("flipped");
 
+        }
     }
 }
 function gameIsOver(){
+    console.log('gameisover got called');
     if($('.found').length==cols*rows){
         return true; //game is done
     }else{
@@ -134,7 +141,6 @@ $('#start').submit(function(e){
             removeLevelsDiv();
             fillColors(); //method that would set each disk to a certian color that can be flipped to be reaveled
             timer();
-            $('.disk').click(showColorFor5Seconds);
         }
     });
 });
