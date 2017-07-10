@@ -95,6 +95,22 @@ $("#register-form").validate({
              form.submit();
         }
 });
+function share(){
+    FB.ui(
+  {
+    method: 'share',
+    href: 'http://sephora-game.dev/',
+  },
+  // callback
+  function(response) {
+    if (response && !response.error_message) {
+      alert('Posting completed.');
+    } else {
+      alert('Error while posting.');
+    }
+  }
+);
+}
 $('#fb').submit(function(e){
     e.preventDefault();
     var data = $(this).serializeArray();
