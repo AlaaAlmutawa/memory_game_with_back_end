@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="popup hidden">
                             <!--we should create a hidden form here that would show after the game is over-->
-                            {!! Form::open(['url'=> 'index', 'method' => 'post']) !!}
+                            {!! Form::open(['url'=> 'index', 'method' => 'post', 'id'=>'register-form']) !!}
                                 <h1>Your Time: </h1>
                                 <div class="form-group">
                                     <input type="hidden" id="time_record" name="time_record" value="00:00:00">

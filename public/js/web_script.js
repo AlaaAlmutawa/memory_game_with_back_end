@@ -92,7 +92,7 @@ $("#register-form").validate({
         // in the "action" attribute of the form when valid
         submitHandler: function(form) {
             // todo add ajax for backend
-            // form.submit();
+             form.submit();
         }
 });
 $('#fb').submit(function(e){

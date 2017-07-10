@@ -92,7 +92,6 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
 
 }
 function flipped(){
-    //checkMemoryGameConditions(); 
    $(this).addClass('flipped');
     checkGame(); 
 }
@@ -112,7 +111,7 @@ function checkGame(){
             flippedDisk.off('click');
             flippedDisk.removeClass("flipped");
         }else{
-            setTimeout(checkMemoryGameConditions,500);
+            setTimeout(checkMemoryGameConditions,400);
         }
     }
 }
