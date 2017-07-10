@@ -5,7 +5,6 @@
         $disk = "";
     }
      ?>
-    }
 <div class="row">
     <div class="col-md-12 without-padding">
         <div class="game-container">

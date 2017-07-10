@@ -75,7 +75,7 @@
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <div    class="text without-padding">
+                                <div class="text without-padding">
                                     {!! Form::open(['url'=> 'share', 'method' => 'post']) !!}
                                     <input type="hidden" id="user_id" name="user_id" value="{{$user_id}}">
                                     <button type="submit" id="fb" class="post-ajax-request">

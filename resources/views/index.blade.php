@@ -76,7 +76,7 @@
                 </div>
                 <div class="section relative">
                     <div class="row">
-                        <div class="popup">
+                        <div class="popup hidden">
                             <!--we should create a hidden form here that would show after the game is over-->
                             {!! Form::open(['url'=> 'index', 'method' => 'post', 'id'=>'register-form']) !!}
                                 <h1>Your Time: </h1>
