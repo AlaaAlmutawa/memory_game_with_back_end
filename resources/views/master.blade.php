@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta property="fb:app_id" content="1947835552159519"/>
+<meta property="og:url"                content="http://sephora-game.dev/" />
+<meta property="og:title"              content="Sephora Memory Game!" />
+<meta property="og:description"        content="Test how good your memory is." />
     <title>Sephora Memory Game!</title>
 
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

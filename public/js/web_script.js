@@ -95,11 +95,12 @@ $("#register-form").validate({
              form.submit();
         }
 });
-function share(){
+/*function share(){
     FB.ui(
   {
     method: 'share',
     href: 'http://sephora-game.dev/',
+
   },
   // callback
   function(response) {
@@ -110,13 +111,31 @@ function share(){
     }
   }
 );
-}
+}*/
+$('#fb').on('click', function(){
+    FB.ui(
+  {
+    method: 'share',
+    href: 'http://sephora-game.dev/',
+
+  },
+  // callback
+  function(response) {
+    if (response && !response.error_message) {
+      alert('Posting completed.');
+    } else {
+      alert('Error while posting.');
+    }
+  }
+);
+
+});
 $('#fb').submit(function(e){
     e.preventDefault();
     var data = $(this).serializeArray();
    $.ajax({
         type: "POST",
-        url: '/share',
+        url: '/share', //change this 
         data: data,
         success: function(){
         }
