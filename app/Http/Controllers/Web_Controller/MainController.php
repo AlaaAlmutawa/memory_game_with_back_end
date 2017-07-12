@@ -14,6 +14,7 @@ class MainController extends Controller
     public function index(){
         return view('index');
     }
+
     public function register(Request $request){
         $input = $request->all();
         try{
@@ -24,10 +25,12 @@ class MainController extends Controller
         $user_id= $object->id;
         return redirect('congratulations')->with('user_id',$user_id);
     }
+
     public function congratulations(){
         $user_id = session("user_id");
         return view('congratulations',compact("user_id"));
     }
+
     public function fbshare(Request $request){
         try{
             $player = Player::where('id',$request->get('user_id'))->first();
@@ -38,6 +41,7 @@ class MainController extends Controller
         $player->save();
         return redirect('congratulations')->with('user_id',$request->get('user_id'));
     }
+
     public function track_clicks(){
         $click = new Click;
         $click->save();

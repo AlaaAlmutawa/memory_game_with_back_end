@@ -151,3 +151,10 @@ $('#start').submit(function(e){
         }
     });
 });
+
+// Alternative to assign colors to disks
+// var total = (rows * cols) / 2
+// either generate "total" number of indices to index random colors in array or generate "total" number of distinct random colors (a, b, c)
+// fill a new array with the random colors (doubled) => [a,a,b,b,c,c]
+// shuffle the new array
+// iterate through the new array of colors and fill the disks with the colors of the shuffled array in order
