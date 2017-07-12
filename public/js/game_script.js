@@ -57,12 +57,21 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
     var $disks = $('.disk');
     var colors = [];
     var $disks_number = $disks.length;
+    //we can use a generator that generates the colors (see below)
+    //the below alg. generates random colors based on the number of disks that are required for the level of difficulties.
+    //the issue here that this alg. will generate random new colors for sure, but the shades sometimes are so close to the point where the user might not distinguish the difference from the first sight. 
+    /*
     while(colors.length<=$disks_number/2){
         var color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
         if(color!='#b9babb' && color.length==7) {
             colors.push(color);
         }
     }
+    */ 
+    //or we can predefine the colors in an array 
+    //the hard option is the most colors and it requires 21 different colors. 
+    //i am going to predefine the colors to avoid the player confusion with the different shades that can be generated using an alg. 
+    colors = ['#000000', '#800000', '#FF0000', '#808000', '#008000', '#008080', '#000080', '#800080', '#FF69B4', '#FF7F50', '#FFD700', '#F4A460', '#A52A2A', '#4682B4', '#006400','#00FF00', '#00FA9A', '#4B0082', '#2F4F4F', '#7B68EE' , '#6B8E23' , '#DC143C' , '#2E8B57' ,'#EE82EE', '#E6E6FA' ,'#98FB98','#BC8F8F','#FFE4E1']; 
     colors = shuffleArray(colors);
     var i = 0;
     var j = 0;
