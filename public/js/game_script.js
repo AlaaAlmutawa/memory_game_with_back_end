@@ -69,7 +69,7 @@ function fillColors(){ //fill the colors behind the disks to be revealed once th
     }
     */ 
     //or we can predefine the colors in an array 
-    //the hard option is the most colors and it requires 21 different colors. 
+    //the hard option is the most colors and it requires 21 different colors.>>28 colors are in the array enough for 8*7 plate  
     //i am going to predefine the colors to avoid the player confusion with the different shades that can be generated using an alg. 
     colors = ['#000000', '#800000', '#FF0000', '#808000', '#008000', '#008080', '#000080', '#800080', '#FF69B4', '#FF7F50', '#FFD700', '#F4A460', '#A52A2A', '#4682B4', '#006400','#00FF00', '#00FA9A', '#4B0082', '#2F4F4F', '#7B68EE' , '#6B8E23' , '#DC143C' , '#2E8B57' ,'#EE82EE', '#E6E6FA' ,'#98FB98','#BC8F8F','#FFE4E1']; 
     colors = shuffleArray(colors);

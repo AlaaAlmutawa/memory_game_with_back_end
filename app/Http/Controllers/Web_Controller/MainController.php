@@ -16,7 +16,11 @@ class MainController extends Controller
     }
     public function register(Request $request){
         $input = $request->all();
-        $object = Player::create($input);
+        try{
+            $object = Player::create($input);
+        }catch(\Illuminate\Database\QueryException $e){
+            return abort('500'); 
+        }
         $user_id= $object->id;
         return redirect('congratulations')->with('user_id',$user_id);
     }
