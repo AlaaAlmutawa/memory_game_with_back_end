@@ -29,7 +29,11 @@ class MainController extends Controller
         return view('congratulations',compact("user_id"));
     }
     public function fbshare(Request $request){
-        $player = Player::where('id',$request->get('user_id'))->first();
+        try{
+            $player = Player::where('id',$request->get('user_id'))->first();
+        }catch(\Illuminate\Database\QueryException $e){
+            return abort('500'); 
+        }
         $player->shared_fb = true;
         $player->save();
         return redirect('congratulations')->with('user_id',$request->get('user_id'));
